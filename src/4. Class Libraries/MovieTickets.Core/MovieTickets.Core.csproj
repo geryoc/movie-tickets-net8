@@ -13,7 +13,6 @@
     <Folder Include="Application\Theaters\" />
     <Folder Include="Domain\Enums\" />
     <Folder Include="Domain\Events\" />
-    <Folder Include="Domain\EntitiesLogic\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
 
