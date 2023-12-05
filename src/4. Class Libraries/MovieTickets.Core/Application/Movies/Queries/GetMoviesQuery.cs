@@ -8,10 +8,12 @@ using AutoMapper.QueryableExtensions;
 
 namespace MovieTickets.Core.Application.Movies.Queries
 {
-    public class GetMoviesQuery : PagedQuery, IRequest<PageResult<MovieModel>>
+    public class GetMoviesQuery : OrderByPagedQuery, IRequest<PageResult<MovieModel>>
     {
         public int? Id { get; set; }
         public string Name { get; set; }
+        
+        public override string OrderBy { get; set; } = "Name";
     }
 
     public class GetMoviesQueryHandler : IRequestHandler<GetMoviesQuery, PageResult<MovieModel>>
@@ -30,7 +32,7 @@ namespace MovieTickets.Core.Application.Movies.Queries
             var pageResult = await _context.Movies
                 .Where(movie => request.Id == null || movie.Id == request.Id)
                 .Where(movie => string.IsNullOrEmpty(request.Name) || movie.Name.Contains(request.Name))
-                .OrderBy(x => x.Name)
+                .OrderBy(request.OrderBy, request.IsOrderByDescending)
                 .ProjectTo<MovieModel>(_mapper.ConfigurationProvider)
                 .ToPageResultAsync(request);
 
