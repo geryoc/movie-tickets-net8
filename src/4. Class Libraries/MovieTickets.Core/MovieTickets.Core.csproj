@@ -8,10 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Application\Movies\Command\" />
-    <Folder Include="Application\Movies\Helpers\" />
     <Folder Include="Application\Tickets\" />
     <Folder Include="Application\Theaters\" />
-    <Folder Include="Application\_Shared\Validation\" />
     <Folder Include="Domain\Enums\" />
     <Folder Include="Domain\Events\" />
     <Folder Include="Exceptions\" />
