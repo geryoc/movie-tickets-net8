@@ -1,0 +1,17 @@
+@MovieTickets.WebApi_HostAddress = https://localhost:7238
+
+# 1. Get All
+
+## Case1 default params
+
+GET {{MovieTickets.WebApi_HostAddress}}/movies/
+Accept: application/json
+
+# Case2 with page params
+# Case3 with page and order by params
+# Case4 filter By Id
+# Case filter By Name
+
+# 2. Create
+# 3. Update
+# 4. Delete
