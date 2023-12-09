@@ -22,6 +22,8 @@ public static class ConfigurationServices
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
+        services.AddScoped<DataSeeder>();
+
         return services;
     }
 }

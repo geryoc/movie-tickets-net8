@@ -1,3 +1,4 @@
+using MovieTickets.Infrastructure.Data;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    // Seed database
+    using var scope = app.Services.CreateScope();
+    var dataSeeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+    await dataSeeder.SeedDataAsync();
 }
 
 app.UseHttpsRedirection();
