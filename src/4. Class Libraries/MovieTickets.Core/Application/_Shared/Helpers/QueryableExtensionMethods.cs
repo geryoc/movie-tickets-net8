@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using MovieTickets.Core.Application._Shared.Models;
 using MovieTickets.Core.Application._Shared.Queries;
-using System.Linq.Expressions;
 
 namespace MovieTickets.Core.Application._Shared.Helpers;
 
@@ -27,7 +27,7 @@ public static class QueryableExtensionMethods
 
     public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string propertyName, bool orderByDescending)
     {
-        return orderByDescending ? 
+        return orderByDescending ?
             source.OrderByDescending(ToLambda<T>(propertyName)) :
             source.OrderBy(ToLambda<T>(propertyName));
     }

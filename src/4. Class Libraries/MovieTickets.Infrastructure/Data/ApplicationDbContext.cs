@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MovieTickets.Core.Domain.Entities;
 
 namespace MovieTickets.Infrastructure.Data;

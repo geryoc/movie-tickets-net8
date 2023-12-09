@@ -1,5 +1,5 @@
-using MovieTickets.Infrastructure.Data;
 using System.Text.Json.Serialization;
+using MovieTickets.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

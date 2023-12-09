@@ -30,7 +30,7 @@ public class DataSeeder(ILogger<DataSeeder> logger, ApplicationDbContext dbConte
         // Examples seed custom logic
         await SeedCustomMoviesUsingScriptAsync();
         await SeedCustomMoviesUsingCodeAsync();
-        
+
         _logger.LogInformation("Seeding Finished.");
     }
 
@@ -48,7 +48,7 @@ public class DataSeeder(ILogger<DataSeeder> logger, ApplicationDbContext dbConte
         if (customMovie == null)
         {
             customMovie = new Movie
-            { 
+            {
                 Name = "Custom Test Movie 2"
             };
 

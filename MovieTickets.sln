@@ -5,6 +5,7 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B071E320-4682-4BCD-9CFE-04339A573D42}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
@@ -32,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieTickets.Infrastructure
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MovieTickets.Database", "src\5. Database\MovieTickets.Database\MovieTickets.Database.sqlproj", "{38E46F92-0C0E-4893-94E5-815427E6DC60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTickets.WebApi", "src\2. Services\MovieTickets.WebApi\MovieTickets.WebApi.csproj", "{C28F5033-623E-4E61-98F5-A3A68D95666A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieTickets.WebApi", "src\2. Services\MovieTickets.WebApi\MovieTickets.WebApi.csproj", "{C28F5033-623E-4E61-98F5-A3A68D95666A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
