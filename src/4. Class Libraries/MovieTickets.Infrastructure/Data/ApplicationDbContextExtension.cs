@@ -1,8 +1,7 @@
 ﻿using MovieTickets.Core.Infrastructure;
 
-namespace MovieTickets.Infrastructure.Data
+namespace MovieTickets.Infrastructure.Data;
+
+public partial class ApplicationDbContext : IApplicationDbContext
 {
-    public partial class ApplicationDbContext : IApplicationDbContext
-    {
-    }
 }
