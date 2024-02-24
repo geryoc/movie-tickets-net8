@@ -10,4 +10,4 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\Data\[dbo].[Movie].sql
+:r .\Data\[dbo].[Gender].sql

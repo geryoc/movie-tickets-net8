@@ -15,7 +15,7 @@ public class MoviesController(ILogger<MoviesController> logger) : ControllerBase
     protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
 
     [HttpGet]
-    public async Task<ActionResult<PageResult<MovieModel>>> GetTodoItemsWithPagination([FromQuery] GetMoviesQuery query)
+    public async Task<ActionResult<PageResult<MovieModel>>> GetMovies([FromQuery] GetMoviesQuery query)
     {
         return await Mediator.Send(query);
     }

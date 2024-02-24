@@ -66,10 +66,15 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Movie.sql" />
     <Build Include="dbo\Stored Procedures\sp_generate_merge.sql" />
+    <Build Include="dbo\Tables\Person.sql" />
+    <Build Include="dbo\Tables\MovieGender.sql" />
+    <Build Include="dbo\Tables\MovieDirector.sql" />
+    <Build Include="dbo\Tables\MovieActor.sql" />
+    <Build Include="dbo\Tables\Gender.sql" />
+    <None Include="Scripts\Data\[dbo].[Gender].sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SqlSchemaCompares\SqlSchemaCompare.GY.localhost.scmp" />
-    <None Include="Scripts\Data\[dbo].[Movie].sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />

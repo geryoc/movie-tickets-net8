@@ -27,32 +27,170 @@ public class DataSeeder(ILogger<DataSeeder> logger, ApplicationDbContext dbConte
     {
         _logger.LogInformation("Seeding Database...");
 
-        // Examples seed custom logic
-        await SeedCustomMoviesUsingScriptAsync();
-        await SeedCustomMoviesUsingCodeAsync();
+        await SeedMovies();
 
         _logger.LogInformation("Seeding Finished.");
     }
 
-    private async Task SeedCustomMoviesUsingScriptAsync()
+    private async Task SeedMovies()
     {
-        // Example seed data using in code scripts 
-        await _dbContext.Database.ExecuteSqlRawAsync(DataScripts.SeedCustomMovies);
+        await CreateMovieIfNotExists(
+            "La Sociedad De La Nieve",
+            145,
+            ["Drama", "Aventura"],
+            [("J.A.", "Bayona")],
+            [
+                ("Enzo", "Bayona"),
+                ("Esteban", "Bigliardi")
+            ]
+        );
+
+        await CreateMovieIfNotExists(
+            "Muchachos La Película De La Gente",
+            110,
+            ["Documental"],
+            [("Jesus", "Braceras")],
+            []
+        );
+
+        await CreateMovieIfNotExists(
+            "Venganza Silenciosa",
+            105,
+            ["Acción"],
+            [("John", "Woo")],
+            [
+                ("Catalina", "Sandino"),
+                ("Joel", "Kinnaman")
+            ]
+        );
+
+        await CreateMovieIfNotExists(
+            "Wonka",
+            115,
+            ["Infantil", "Aventura"],
+            [("Paul", "King")],
+            [
+                ("Hugh", "Grant"),
+                ("Timothée", "Colman"),
+                ("Olivia", "Chalamet"),
+            ]
+        );
+
+        await CreateMovieIfNotExists(
+            "Digimon Adventures 02 El Comienzo",
+            80,
+            ["Animación", "Aventura"],
+            [("Tomohisa", "Taguchi")],
+            []
+        );
+
+        await CreateMovieIfNotExists(
+            "Mavka Guardiana Del Bosque",
+            80,
+            ["Animación", "Infantil"],
+            [("Oleh", "Malamuzh")],
+            []
+        );
+
+        await CreateMovieIfNotExists(
+            "Viernes Negro",
+            105,
+            ["Terror"],
+            [("Eli", "Roth")],
+            [
+                ("Gina", "Gershon"),
+                ("Rick", "Hoffman"),
+            ]
+        );
+
+        await CreateMovieIfNotExists(
+            "Napoleón",
+            160,
+            ["Acción", "Drama"],
+            [("Ridley", "Scott")],
+            [
+                ("Joaquin", "Phoenix"),
+                ("Vanessa", "Kirby"),
+            ]
+        );
+
+        await CreateMovieIfNotExists(
+            "El Duelo",
+            80,
+            ["Acción", "Comedia", "Thriller"],
+            [("Augusto", "Tejada")],
+            [
+                ("Joaquín", "Furriel"),
+                ("Maria Eugenia", "Suarez"),
+            ]
+        );
     }
 
-    private async Task SeedCustomMoviesUsingCodeAsync()
+    private async Task CreateMovieIfNotExists(string title, int duration, string[] genders, (string firstName, string lastName)[] directors, (string firstName, string lastName)[] actors)
     {
-        // Example seed custom logic
-        var customMovie = await _dbContext.Movies.FirstOrDefaultAsync(m => m.Name.Equals("Custom Test Movie 2"));
+        var existingMovie = await _dbContext.Movies.FirstOrDefaultAsync(m => m.Title.Equals(title));
 
-        if (customMovie == null)
+        if (existingMovie == null)
         {
-            customMovie = new Movie
+            var movie = new Movie
             {
-                Name = "Custom Test Movie 2"
+                Title = title,
+                DurationInMinutes = duration,
             };
 
-            _dbContext.Movies.Add(customMovie);
+            foreach (var gender in genders)
+            {
+                var genderEntity = await _dbContext.Genders.FirstOrDefaultAsync(g => g.Name.Equals(gender));
+                
+                var movieGender = new MovieGender
+                {
+                    Movie = movie,
+                    CreatedAt = DateTime.UtcNow,
+                    GenderId = genderEntity.Id,
+                };
+
+                movie.MovieGenders.Add(movieGender);
+            }
+
+            foreach (var (firstName, lastName) in directors)
+            {
+                var person = await _dbContext.People.FirstOrDefaultAsync(p => p.FirstName.Equals(firstName) && p.LastName.Equals(lastName));
+
+                var movieDirector = new MovieDirector
+                {
+                    Movie = movie,
+                    CreatedAt = DateTime.UtcNow,
+                    Person = person,
+                };
+
+                movieDirector.Person ??= new Person
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                };
+
+                movie.MovieDirectors.Add(movieDirector);
+            }
+
+            foreach (var (firstName, lastName) in actors)
+            {
+                var movieActor = new MovieActor
+                {
+                    Movie = movie,
+                    CreatedAt = DateTime.UtcNow,
+                    Person = await _dbContext.People.FirstOrDefaultAsync(p => p.FirstName.Equals(firstName) && p.LastName.Equals(lastName))
+                };
+
+                movieActor.Person ??= new Person
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                };
+
+                movie.MovieActors.Add(movieActor);
+            }
+
+            _dbContext.Movies.Add(movie);
             await _dbContext.SaveChangesAsync();
         }
     }

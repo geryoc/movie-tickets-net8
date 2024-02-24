@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MovieTickets.Core.Domain.Entities;
 
-[Table("Movie")]
-public partial class Movie
+[Table("Person")]
+public partial class Person
 {
     [Key]
     public long Id { get; set; }
@@ -15,16 +15,20 @@ public partial class Movie
     [Required]
     [StringLength(500)]
     [Unicode(false)]
-    public string Title { get; set; }
+    public string FirstName { get; set; }
 
-    public int? DurationInMinutes { get; set; }
+    [StringLength(500)]
+    [Unicode(false)]
+    public string MiddleName { get; set; }
 
-    [InverseProperty("Movie")]
+    [Required]
+    [StringLength(500)]
+    [Unicode(false)]
+    public string LastName { get; set; }
+
+    [InverseProperty("Person")]
     public virtual ICollection<MovieActor> MovieActors { get; set; } = new List<MovieActor>();
 
-    [InverseProperty("Movie")]
+    [InverseProperty("Person")]
     public virtual ICollection<MovieDirector> MovieDirectors { get; set; } = new List<MovieDirector>();
-
-    [InverseProperty("Movie")]
-    public virtual ICollection<MovieGender> MovieGenders { get; set; } = new List<MovieGender>();
 }

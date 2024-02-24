@@ -2,5 +2,5 @@
 
 public partial class Movie
 {
-    public string PresentationName => $"Test Entity Logic: {Name}";
+    public string PresentationTitle => $"Test Entity Logic: {Title}";
 }
