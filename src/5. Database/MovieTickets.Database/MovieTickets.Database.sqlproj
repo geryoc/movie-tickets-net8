@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Movie.sql" />
-    <Build Include="dbo\Stored Procedures\sp_generate_merge.sql" />
     <Build Include="dbo\Tables\Person.sql" />
     <Build Include="dbo\Tables\MovieGender.sql" />
     <Build Include="dbo\Tables\MovieDirector.sql" />

@@ -5,9 +5,9 @@ using MovieTickets.Core.Domain.Entities;
 
 namespace MovieTickets.Infrastructure.Data;
 
-public partial class ApplicationDbContext : DbContext
+public partial class DatabaseContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)
     {
     }

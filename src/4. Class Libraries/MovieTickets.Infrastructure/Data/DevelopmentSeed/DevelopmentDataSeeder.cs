@@ -1,35 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MovieTickets.Core.Domain.Entities;
-using MovieTickets.Infrastructure.Data.Scripts;
 
-namespace MovieTickets.Infrastructure.Data;
+namespace MovieTickets.Infrastructure.Data.DevelopmentSeed;
 
-public class DataSeeder(ILogger<DataSeeder> logger, ApplicationDbContext dbContext) // Primary Constructor feature c# 12
+public class DevelopmentDataSeeder(ILogger<DevelopmentDataSeeder> logger, DatabaseContext dbContext) // Primary Constructor feature c# 12
 {
-    private readonly ILogger<DataSeeder> _logger = logger;
-    private readonly ApplicationDbContext _dbContext = dbContext;
+    private readonly ILogger<DevelopmentDataSeeder> _logger = logger;
+    private readonly DatabaseContext _dbContext = dbContext;
 
-    public async Task SeedDataAsync()
+    public async Task SeedDevelopmentDataAsync()
     {
         try
         {
-            await TrySeedAsync();
+            _logger.LogInformation("Seeding Database...");
+
+            await SeedMovies();
+
+            _logger.LogInformation("Seeding Finished.");
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while seeding the database.");
+            _logger.LogError(ex, "An error occurred while seeding the database with development data.");
             throw;
         }
-    }
-
-    private async Task TrySeedAsync()
-    {
-        _logger.LogInformation("Seeding Database...");
-
-        await SeedMovies();
-
-        _logger.LogInformation("Seeding Finished.");
     }
 
     private async Task SeedMovies()
@@ -141,7 +135,7 @@ public class DataSeeder(ILogger<DataSeeder> logger, ApplicationDbContext dbConte
             foreach (var gender in genders)
             {
                 var genderEntity = await _dbContext.Genders.FirstOrDefaultAsync(g => g.Name.Equals(gender));
-                
+
                 var movieGender = new MovieGender
                 {
                     Movie = movie,

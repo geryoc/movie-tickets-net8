@@ -21,19 +21,4 @@
     <ProjectReference Include="..\MovieTickets.Core\MovieTickets.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Data\Scripts\DataScripts.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DataScripts.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Data\Scripts\DataScripts.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DataScripts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
 </Project>

@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using MovieTickets.Core.Application._Shared.Mapping;
-using MovieTickets.Core.Domain.Entities;
+﻿using MovieTickets.Core.Domain.Entities;
 
-namespace MovieTickets.Core.Application._Shared.Models;
+namespace MovieTickets.Core.Application._Shared.Models.EntityModels;
 
-public class MovieModel : IMapFrom<Movie>
+public class MovieModel
 {
     public long Id { get; set; }
     public string Title { get; set; }

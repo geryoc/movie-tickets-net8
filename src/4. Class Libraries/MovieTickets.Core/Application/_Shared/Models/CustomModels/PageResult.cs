@@ -1,4 +1,4 @@
-﻿namespace MovieTickets.Core.Application._Shared.Models;
+﻿namespace MovieTickets.Core.Application._Shared.Models.CustomModels;
 
 public class PageResult<T>(IReadOnlyCollection<T> items, int count, int pageNumber, int pageSize)
 {

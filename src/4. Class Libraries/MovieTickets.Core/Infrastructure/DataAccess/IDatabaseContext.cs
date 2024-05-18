@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieTickets.Core.Domain.Entities;
 
-namespace MovieTickets.Core.Infrastructure;
+namespace MovieTickets.Core.Infrastructure.DataAccess;
 
-public interface IApplicationDbContext
+public interface IDatabaseContext
 {
     DbSet<Movie> Movies { get; set; }
 
